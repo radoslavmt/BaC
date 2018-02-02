@@ -1,0 +1,145 @@
+body {
+    background-color: #797979;
+    margin: 0 auto;
+}
+
+#header {
+    text-align: center;
+}
+
+#header a {
+    background-color: #ffa500;
+    padding: 1%;
+    border-radius: 15px;
+}
+
+#header a:hover {
+    background-color: #3bc03b;
+    border: 1px solid black;
+}
+
+#navigation {
+    padding: 0 auto;
+    margin: 2% 0;
+    width: 97.5%;
+}
+
+#navigation ul {
+    text-align: center;
+}
+
+#navigation ul li {
+    display: inline;
+    background-color: #ffa500;
+    border-radius: 5px;
+}
+
+#navigation ul li a {
+    text-decoration: none;
+    padding: 1%;
+    color: black;
+}
+
+#navigation ul li:hover {
+    background-color: #3bc03b;
+}
+
+#content {
+    width: 90%;
+    margin: 0 auto;
+}
+
+div fieldset legend {
+    font-size: 200%;
+    font-weight: 900;
+}
+
+#p1 {
+    float: left;
+    width: 20%;
+    margin-left: 12%;
+}
+
+#my1, #num1 {
+    display: block;
+    width: 50%;
+    padding: 2%;
+    margin: 3% 0;
+    font-size: 200%;
+    text-align: center;
+    border-radius: 15px 0 15px 0;
+    border: none;
+    outline: none;
+}
+
+#text1, #text2 {
+    display: block;
+    width: 100%;
+    height: 300px;
+    font-size: 150%;
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+#text1 {
+    border-radius: 15px 0 15px 0;
+}
+
+#text2 {
+    border-radius: 0 15px 0 15px;
+}
+
+#msg {
+    float: left;
+    text-align: center;
+    font-weight: 900;
+    width: 30%;
+    height: 100%;
+    background-color: #ffffff;
+    margin: 0 2%;
+}
+
+#msg h2 {
+    font-size: 200%;
+    font-weight: 900;
+    text-align: center;
+}
+
+#p2 {
+    float: left;
+    width: 20%;
+}
+
+#my2, #num2 {
+    display: block;
+    width: 50%;
+    padding: 2%;
+    margin: 3% 0;
+    font-size: 200%;
+    text-align: center;
+    border-radius: 0 15px 0 15px;
+    border: none;
+    outline: none;
+}
+
+#bt1, #bt2 {
+    width: 40%;
+    height: 30px;
+    background-color: #ffa500;
+    text-align: center;
+    margin: 3% 0;
+    padding: 1% 0;
+    border-radius: 5px;
+}
+
+#bt1 a, #bt2 a {
+    text-align: center;
+    position: center;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+#bt1:hover, #bt2:hover {
+    background-color: #3bc03b;
+}
