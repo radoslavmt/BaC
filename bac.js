@@ -11,61 +11,85 @@ let p1n = document.getElementById("my1"),
 
 bt1.addEventListener('click', function() {
     if (p1c.value === p2n.value) {
-        msg.innerHTML = "Player 1 win".fontsize(20);
-        p1t.innerHTML = (p1c.value + " - 4 bulls !");
+        msg.innerHTML = "Player 1 win".fontsize(20).fontcolor();
+        p1t.innerHTML += p1c.value + " - 4 bulls !" + "\n";
+        p1t.scrollTop = p1t.scrollHeight;
     } else if (p1c.value[0] === p2n.value[0] && p1c.value[1] === p2n.value[1] && p1c.value[2] === p2n.value[2] ||
         p1c.value[1] === p2n.value[1] && p1c.value[2] === p2n.value[2] && p1c.value[3] === p2n.value[3] ||
         p1c.value[0] === p2n.value[0] && p1c.value[1] === p2n.value[1] && p1c.value[3] === p2n.value[3] ||
         p1c.value[0] === p2n.value[0] && p1c.value[2] === p2n.value[2] && p1c.value[3] === p2n.value[3]) {
-            msg.innerHTML = "3 bulls !".fontsize(20);
-            p1t.innerHTML = p1c.value + " - you have 3 bulls";
+            msg.innerHTML = "You have 3 bulls !".fontsize(20);
+            p1t.innerHTML += p1c.value + " - 3 bulls" + "\n";
+            p1t.scrollTop = p1t.scrollHeight;
     } else if (p1c.value[0] === p2n.value[0] && p1c.value[1] === p2n.value[1] ||
         p1c.value[1] === p2n.value[1] && p1c.value[2] === p2n.value[2] ||
         p1c.value[2] === p2n.value[2] && p1c.value[3] === p2n.value[3] ||
         p1c.value[0] === p2n.value[0] && p1c.value[2] === p2n.value[2] ||
         p1c.value[0] === p2n.value[0] && p1c.value[3] === p2n.value[3] || 
         p1c.value[1] === p2n.value[1] && p1c.value[3] === p2n.value[3]) {
-            msg.innerHTML = "2 bulls !".fontsize(20);
-            p1t.innerHTML = p1c.value + " - you have 2 bulls";
+            msg.innerHTML = "You have 2 bulls !".fontsize(20);
+            p1t.innerHTML += p1c.value + " - 2 bulls" + "\n";
+            p1t.scrollTop = p1t.scrollHeight;
     } else if (p1c.value[0] === p2n.value[0] ||
         p1c.value[1] === p2n.value[1] ||
         p1c.value[2] === p2n.value[2] ||
         p1c.value[3] === p2n.value[3]) {
-            msg.innerHTML = "1 bull !".fontsize(20);
-            p1t.innerHTML = p1c.value + " - you have: 1 bull";
+            msg.innerHTML = "You have 1 bull !".fontsize(20);
+            p1t.innerHTML += p1c.value + " - 1 bull" + "\n";
+            p1t.scrollTop = p1t.scrollHeight;
+    } else if (p1c.value[0] === p2n.value[1] || p1c.value[0] === p2n.value[2] || p1c.value[0] === p2n.value[3] ||
+        p1c.value[1] === p2n.value[0] || p1c.value[1] === p2n.value[2] || p1c.value[1] === p2n.value[3] ||
+        p1c.value[2] === p2n.value[0] || p1c.value[2] === p2n.value[1] || p1c.value[2] === p2n.value[3] ||
+        p1c.value[3] === p2n.value[0] || p1c.value[3] === p2n.value[1] || p1c.value[3] === p2n.value[2]) {
+            msg.innerHTML = "You have 1 cow".fontsize(20);
+            p1t.innerHTML += p1c.value + " - 1 cow" + "\n";
+            p1t.scrollTop = p1t.scrollHeight;
     } else {
-        msg.innerHTML = "you have nothing :(".fontsize(20);
-        p1t.innerHTML = p1c.value + " - you have nothing";
+        msg.innerHTML = "You have nothing :(".fontsize(20);
+        p1t.innerHTML += p1c.value + " - Nothing" + "\n";
+        p1t.scrollTop = p1t.scrollHeight;
     }
 }, false);
 
 bt2.addEventListener('click', function() {
     if (p2c.value == p1n.value) {
         msg.innerHTML = "Player 2 win".fontsize(20);
-        p2t.innerHTML = (p2c.value + " - 4 bulls")
+        p2t.innerHTML = p2c.value + " - 4 bulls" + "\n";
+        p2t.scrollTop = p2t.scrollHeight;
     } else if (p2c.value[0] === p1n.value[0] && p2c.value[1] === p1n.value[1] && p2c.value[2] === p1n.value[2] ||
         p2c.value[1] === p1n.value[1] && p2c.value[2] === p1n.value[2] && p2c.value[3] === p1n.value[3] ||
         p2c.value[0] === p1n.value[0] && p2c.value[1] === p1n.value[1] && p2c.value[3] === p1n.value[3] ||
         p2c.value[0] === p1n.value[0] && p2c.value[2] === p1n.value[2] && p2c.value[3] === p1n.value[3]) {
-            msg.innerHTML = "3 bulls !".fontsize(20);
-            p2t.innerHTML = p1c.value + " - you have 3 bulls";
+            msg.innerHTML = "You have 3 bulls !".fontsize(20);
+            p2t.innerHTML += p1c.value + " - 3 bulls" + "\n";
+            p2t.scrollTop = p2t.scrollHeight;
     } else if (p2c.value[0] === p1n.value[0] && p2c.value[1] === p1n.value[1] ||
         p2c.value[1] === p1n.value[1] && p2c.value[2] === p1n.value[2] ||
         p2c.value[2] === p1n.value[2] && p2c.value[3] === p1n.value[3] ||
         p2c.value[0] === p1n.value[0] && p2c.value[2] === p1n.value[2] ||
         p2c.value[0] === p1n.value[0] && p2c.value[3] === p1n.value[3] || 
         p2c.value[1] === p1n.value[1] && p2c.value[3] === p1n.value[3]) {
-            msg.innerHTML = "2 bulls !".fontsize(20);
-            p2t.innerHTML = p2c.value + " - you have 2 bulls";
+            msg.innerHTML = "You have 2 bulls !".fontsize(20);
+            p2t.innerHTML += p2c.value + " - 2 bulls" + "\n";
+            p2t.scrollTop = p2t.scrollHeight;
     } else if (p2c.value[0] === p1n.value[0] ||
         p2c.value[1] === p1n.value[1] ||
         p2c.value[2] === p1n.value[2] ||
         p2c.value[3] === p1n.value[3]) {
-            msg.innerHTML = "1 bull !".fontsize(20);
-            p2t.innerHTML = p2c.value + " - you have: 1 bull";
+            msg.innerHTML = "You have 1 bull !".fontsize(20);
+            p2t.innerHTML += p2c.value + " - 1 bull" + "\n";
+            p2t.scrollTop = p2t.scrollHeight;
+    } else if (p2c.value[0] === p1n.value[1] || p2c.value[0] === p1n.value[2] || p2c.value[0] === p1n.value[3] ||
+        p2c.value[1] === p1n.value[0] || p2c.value[1] === p1n.value[2] || p2c.value[1] === p1n.value[3] ||
+        p2c.value[2] === p1n.value[0] || p2c.value[2] === p1n.value[1] || p2c.value[2] === p1n.value[3] ||
+        p2c.value[3] === p1n.value[0] || p2c.value[3] === p1n.value[1] || p2c.value[3] === p1n.value[2]) {
+            msg.innerHTML = "You have 1 cow".fontsize(20);
+            p2t.innerHTML += p2c.value + " - 1 cow" + "\n";
+            p2t.scrollTop = p2t.scrollHeight;
     } else {
-        msg.innerHTML = "you have nothing :(".fontsize(20);
-        p2t.innerHTML = p2c.value + " - you have nothing";
+        msg.innerHTML = "You have nothing :(".fontsize(20);
+        p2t.innerHTML += p2c.value + " - Nothing" + "\n";
+        p2t.scrollTop = p2t.scrollHeight;
     }
 }, false);
 

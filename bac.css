@@ -80,14 +80,7 @@ div fieldset legend {
     border: none;
     outline: none;
     resize: none;
-}
-
-#text1 {
-    border-radius: 15px 0 15px 0;
-}
-
-#text2 {
-    border-radius: 0 15px 0 15px;
+    overflow: visible;
 }
 
 #msg {
