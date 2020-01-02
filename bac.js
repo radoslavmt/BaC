@@ -6,42 +6,29 @@ let p1n = document.getElementById("my1"),
     p2c = document.getElementById("num2"),
     p2t = document.getElementById("text2"),
     bt2 = document.getElementById("bt2"),
-    msg = document.getElementById("msg"),
-    start = document.getElementById("start");
+    msg = document.getElementById("mst"),
+    start = document.getElementById("start"),
+    pl1 = document.getElementById("pl1").innerText,
+    pl2 = document.getElementById("pl2").innerText;
 
-function checkBullP1() {
-    if (p1c.value === p2n.value) {
-        msg.innerHTML = "Player 1 win".fontsize(20);
-        p1t.innerHTML += p1c.value + " - 4 bulls ";
-        p1t.scrollTop = p1t.scrollHeight;
-    } else if (p1c.value[0] === p2n.value[0] && p1c.value[1] === p2n.value[1] && p1c.value[2] === p2n.value[2] ||
-        p1c.value[1] === p2n.value[1] && p1c.value[2] === p2n.value[2] && p1c.value[3] === p2n.value[3] ||
-        p1c.value[0] === p2n.value[0] && p1c.value[1] === p2n.value[1] && p1c.value[3] === p2n.value[3] ||
-        p1c.value[0] === p2n.value[0] && p1c.value[2] === p2n.value[2] && p1c.value[3] === p2n.value[3]) {
-            p1t.innerHTML += p1c.value + " - 3 bulls ";
-            p1t.scrollTop = p1t.scrollHeight;
-    } else if (p1c.value[0] === p2n.value[0] && p1c.value[1] === p2n.value[1] ||
-        p1c.value[1] === p2n.value[1] && p1c.value[2] === p2n.value[2] ||
-        p1c.value[2] === p2n.value[2] && p1c.value[3] === p2n.value[3] ||
-        p1c.value[0] === p2n.value[0] && p1c.value[2] === p2n.value[2] ||
-        p1c.value[0] === p2n.value[0] && p1c.value[3] === p2n.value[3] || 
-        p1c.value[1] === p2n.value[1] && p1c.value[3] === p2n.value[3]) {
-            p1t.innerHTML += p1c.value + " - 2 bulls ";
-            p1t.scrollTop = p1t.scrollHeight;
-    } else if (p1c.value[0] === p2n.value[0] ||
-        p1c.value[1] === p2n.value[1] ||
-        p1c.value[2] === p2n.value[2] ||
-        p1c.value[3] === p2n.value[3]) {
-            p1t.innerHTML += p1c.value + " - 1 bull ";
-            p1t.scrollTop = p1t.scrollHeight;
-    } else {
-        p1t.innerHTML += p1c.value + " - 0 bulls ";
-        p1t.scrollTop = p1t.scrollHeight;
+
+function checkBull(rec,res,text,player) {
+    let result=0;
+    for (let i = 0; i < 4; i++) {
+        if (rec[i] === res[i]){
+            result++;
+        }
+    }
+    text.innerHTML += rec + " - "+result+" bulls \n";
+    text.scrollTop = text.scrollHeight;
+
+    if(result === 4) {
+        msg.innerHTML = player + " YOU WIN";
     }
 }
 
 function checkCowP1() {
-    if (    //4 cows //
+    if (    // 4 cows combinations//
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[0] && p1c.value[2] === p2n.value[3] && p1c.value[3] === p2n.value[2] ||
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[2] && p1c.value[2] === p2n.value[3] && p1c.value[3] === p2n.value[0] ||
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[3] && p1c.value[2] === p2n.value[0] && p1c.value[3] === p2n.value[2] ||
@@ -53,7 +40,7 @@ function checkCowP1() {
         p1c.value[0] === p2n.value[3] && p1c.value[1] === p2n.value[2] && p1c.value[2] === p2n.value[0] && p1c.value[3] === p2n.value[1]) {
             p1t.innerHTML += "4 cows" + "\n" + "\n";
             p1t.scrollTop = p1t.scrollHeight;
-    } else if (    //3 cows with index 1, 2 and 3 //
+    } else if (    // 3 cows with index 1, 2 and 3 //
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[0] && p1c.value[3] === p2n.value[2] ||
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[2] && p1c.value[3] === p2n.value[0] ||
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[2] && p1c.value[2] === p2n.value[0] ||
@@ -65,7 +52,7 @@ function checkCowP1() {
         p1c.value[0] === p2n.value[2] && p1c.value[1] === p2n.value[0] && p1c.value[3] === p2n.value[1] ||
         p1c.value[0] === p2n.value[2] && p1c.value[2] === p2n.value[0] && p1c.value[3] === p2n.value[1] ||
         p1c.value[1] === p2n.value[2] && p1c.value[2] === p2n.value[0] && p1c.value[3] === p2n.value[1] ||
-            //3 cows with index 2, 3 and 4 //
+            // 3 cows with index 2, 3 and 4 //
         p1c.value[0] === p2n.value[1] && p1c.value[2] === p2n.value[3] && p1c.value[3] === p2n.value[2] ||
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[2] && p1c.value[2] === p2n.value[3] ||
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[3] && p1c.value[3] === p2n.value[2] ||
@@ -77,7 +64,7 @@ function checkCowP1() {
         p1c.value[0] === p2n.value[3] && p1c.value[1] === p2n.value[2] && p1c.value[3] === p2n.value[1] ||
         p1c.value[1] === p2n.value[2] && p1c.value[2] === p2n.value[3] && p1c.value[3] === p2n.value[1] ||
         p1c.value[0] === p2n.value[2] && p1c.value[2] === p2n.value[3] && p1c.value[3] === p2n.value[1] ||
-            //3 cows with index 1, 3 and 4 //
+            // 3 cows with index 1, 3 and 4 //
         p1c.value[0] === p2n.value[2] && p1c.value[1] === p2n.value[0] && p1c.value[2] === p2n.value[3] ||
         p1c.value[0] === p2n.value[2] && p1c.value[1] === p2n.value[3] && p1c.value[2] === p2n.value[0] ||
         p1c.value[0] === p2n.value[2] && p1c.value[1] === p2n.value[3] && p1c.value[3] === p2n.value[0] ||
@@ -89,7 +76,7 @@ function checkCowP1() {
         p1c.value[1] === p2n.value[0] && p1c.value[2] === p2n.value[3] && p1c.value[3] === p2n.value[2] ||
         p1c.value[0] === p2n.value[3] && p1c.value[2] === p2n.value[0] && p1c.value[3] === p2n.value[2] ||
         p1c.value[1] === p2n.value[3] && p1c.value[2] === p2n.value[0] && p1c.value[3] === p2n.value[2] ||
-        //3 cows with index 1, 2 and 4 //
+        // 3 cows with index 1, 2 and 4 //
         p1c.value[0] === p2n.value[1] && p1c.value[2] === p2n.value[3] && p1c.value[3] === p2n.value[0] ||
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[3] && p1c.value[2] === p2n.value[3] ||
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[3] && p1c.value[2] === p2n.value[0] ||
@@ -103,7 +90,7 @@ function checkCowP1() {
         p1c.value[1] === p2n.value[0] && p1c.value[2] === p2n.value[3] && p1c.value[3] === p2n.value[1]) {
             p1t.innerHTML += "3 cows" + "\n" + "\n";
             p1t.scrollTop = p1t.scrollHeight;
-    } else if (    //2 cows with index 1 and 2 //
+    } else if (    // 2 cows with index 1 and 2 //
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[0] ||
         p1c.value[0] === p2n.value[1] && p1c.value[2] === p2n.value[0] ||
         p1c.value[0] === p2n.value[1] && p1c.value[3] === p2n.value[0] ||
@@ -111,7 +98,7 @@ function checkCowP1() {
         p1c.value[2] === p2n.value[1] && p1c.value[3] === p2n.value[0] ||
         p1c.value[1] === p2n.value[0] && p1c.value[3] === p2n.value[1] ||
         p1c.value[2] === p2n.value[0] && p1c.value[3] === p2n.value[1] ||
-            //2 cows with index 3 and 4 //
+            // 2 cows with index 3 and 4 //
         p1c.value[2] === p2n.value[3] && p1c.value[3] === p2n.value[2] ||
         p1c.value[1] === p2n.value[3] && p1c.value[3] === p2n.value[2] ||
         p1c.value[0] === p2n.value[3] && p1c.value[3] === p2n.value[2] ||
@@ -119,7 +106,7 @@ function checkCowP1() {
         p1c.value[0] === p2n.value[3] && p1c.value[1] === p2n.value[2] ||
         p1c.value[0] === p2n.value[2] && p1c.value[2] === p2n.value[3] ||
         p1c.value[0] === p2n.value[2] && p1c.value[1] === p2n.value[3] || 
-            //2 cows with index 2 and 3 //
+            // 2 cows with index 2 and 3 //
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[2] ||
         p1c.value[0] === p2n.value[1] && p1c.value[3] === p2n.value[2] ||
         p1c.value[2] === p2n.value[1] && p1c.value[3] === p2n.value[2] ||
@@ -127,7 +114,7 @@ function checkCowP1() {
         p1c.value[1] === p2n.value[2] && p1c.value[2] === p2n.value[1] ||
         p1c.value[0] === p2n.value[2] && p1c.value[3] === p2n.value[1] ||
         p1c.value[1] === p2n.value[2] && p1c.value[3] === p2n.value[1] ||
-            //2 cows with index 1 and 3 //
+            // 2 cows with index 1 and 3 //
         p1c.value[0] === p2n.value[2] && p1c.value[1] === p2n.value[0] ||
         p1c.value[0] === p2n.value[2] && p1c.value[2] === p2n.value[0] ||
         p1c.value[0] === p2n.value[2] && p1c.value[3] === p2n.value[0] ||
@@ -135,7 +122,7 @@ function checkCowP1() {
         p1c.value[2] === p2n.value[0] && p1c.value[3] === p2n.value[2] ||
         p1c.value[1] === p2n.value[2] && p1c.value[2] === p2n.value[0] ||
         p1c.value[1] === p2n.value[2] && p1c.value[3] === p2n.value[0] ||
-            //2 cows with index 2 and 4 //
+            // 2 cows with index 2 and 4 //
         p1c.value[0] === p2n.value[1] && p1c.value[1] === p2n.value[3] ||
         p1c.value[0] === p2n.value[1] && p1c.value[2] === p2n.value[3] ||
         p1c.value[0] === p2n.value[3] && p1c.value[2] === p2n.value[1] ||
@@ -143,7 +130,7 @@ function checkCowP1() {
         p1c.value[0] === p2n.value[3] && p1c.value[3] === p2n.value[1] ||
         p1c.value[1] === p2n.value[3] && p1c.value[3] === p2n.value[1] ||
         p1c.value[2] === p2n.value[3] && p1c.value[3] === p2n.value[1] ||
-            //2 cows with index 1 and 4 //
+            // 2 cows with index 1 and 4 //
         p1c.value[1] === p2n.value[0] && p1c.value[2] === p2n.value[3] ||
         p1c.value[0] === p2n.value[3] && p1c.value[1] === p2n.value[0] ||
         p1c.value[1] === p2n.value[3] && p1c.value[2] === p2n.value[0] ||
@@ -153,7 +140,8 @@ function checkCowP1() {
         p1c.value[0] === p2n.value[3] && p1c.value[3] === p2n.value[0]) {
             p1t.innerHTML += "2 cows" + "\n" + "\n";
             p1t.scrollTop = p1t.scrollHeight;
-    } else if (p1c.value[0] === p2n.value[1] || p1c.value[0] === p2n.value[2] || p1c.value[0] === p2n.value[3] ||
+    } else if ( // 1 cow combinations //
+        p1c.value[0] === p2n.value[1] || p1c.value[0] === p2n.value[2] || p1c.value[0] === p2n.value[3] ||
         p1c.value[1] === p2n.value[0] || p1c.value[1] === p2n.value[2] || p1c.value[1] === p2n.value[3] ||
         p1c.value[2] === p2n.value[0] || p1c.value[2] === p2n.value[1] || p1c.value[2] === p2n.value[3] ||
         p1c.value[3] === p2n.value[0] || p1c.value[3] === p2n.value[1] || p1c.value[3] === p2n.value[2]) {
@@ -165,173 +153,16 @@ function checkCowP1() {
     }
 }
 
-function checkBullP2() {
-    if (p2c.value == p1n.value) {
-        msg.innerHTML = "Player 2 win".fontsize(20);
-        p2t.innerHTML += p2c.value + " - 4 bulls ";
-        p2t.scrollTop = p2t.scrollHeight;
-    } else if (p2c.value[0] === p1n.value[0] && p2c.value[1] === p1n.value[1] && p2c.value[2] === p1n.value[2] ||
-        p2c.value[1] === p1n.value[1] && p2c.value[2] === p1n.value[2] && p2c.value[3] === p1n.value[3] ||
-        p2c.value[0] === p1n.value[0] && p2c.value[1] === p1n.value[1] && p2c.value[3] === p1n.value[3] ||
-        p2c.value[0] === p1n.value[0] && p2c.value[2] === p1n.value[2] && p2c.value[3] === p1n.value[3]) {
-            p2t.innerHTML += p2c.value + " - 3 bulls ";
-            p2t.scrollTop = p2t.scrollHeight;
-    } else if (p2c.value[0] === p1n.value[0] && p2c.value[1] === p1n.value[1] ||
-        p2c.value[1] === p1n.value[1] && p2c.value[2] === p1n.value[2] ||
-        p2c.value[2] === p1n.value[2] && p2c.value[3] === p1n.value[3] ||
-        p2c.value[0] === p1n.value[0] && p2c.value[2] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[0] && p2c.value[3] === p1n.value[3] || 
-        p2c.value[1] === p1n.value[1] && p2c.value[3] === p1n.value[3]) {
-            p2t.innerHTML += p2c.value + " - 2 bulls ";
-            p2t.scrollTop = p2t.scrollHeight;
-    } else if (p2c.value[0] === p1n.value[0] ||
-        p2c.value[1] === p1n.value[1] ||
-        p2c.value[2] === p1n.value[2] ||
-        p2c.value[3] === p1n.value[3]) {
-            p2t.innerHTML += p2c.value + " - 1 bull ";
-            p2t.scrollTop = p2t.scrollHeight;
-    } else {
-        p2t.innerHTML += p2c.value + " - 0 bulls ";
-        p2t.scrollTop = p2t.scrollHeight;
-    }
-}
-
-function checkCowP2() {
-    if (    //4 cows //
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[0] && p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[0] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[1] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[1] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[1] === p1n.value[0] && p2c.value[2] === p1n.value[1] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[1] === p1n.value[0] && p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[0] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[0] && p2c.value[3] === p1n.value[1]) {
-            p2t.innerHTML += "4 cows" + "\n" + "\n";
-            p2t.scrollTop = p2t.scrollHeight;
-    } else if (    //3 cows with index 1, 2 and 3 //
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[0] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[2] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[2] === p1n.value[0] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[1] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[2] === p1n.value[1] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[1] === p1n.value[0] && p2c.value[2] === p1n.value[1] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[1] === p1n.value[0] && p2c.value[2] === p1n.value[1] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[1] === p1n.value[0] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[2] === p1n.value[0] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[0] && p2c.value[3] === p1n.value[1] ||
-            //3 cows with index 2, 3 and 4 //
-        p2c.value[0] === p1n.value[1] && p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[3] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[3] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[1] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[1] ||
-        p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[1] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[2] === p1n.value[1] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[1] === p1n.value[3] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[1] === p1n.value[2] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[1] ||
-            //3 cows with index 1, 3 and 4 //
-        p2c.value[0] === p1n.value[2] && p2c.value[1] === p1n.value[0] && p2c.value[2] === p1n.value[3] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[1] === p1n.value[3] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[1] === p1n.value[2] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[1] === p1n.value[0] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[1] === p1n.value[0] && p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[2] === p1n.value[0] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[0] && p2c.value[3] === p1n.value[2] ||
-        //3 cows with index 1, 2 and 4 //
-        p2c.value[0] === p1n.value[1] && p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[3] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[3] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[1] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[2] === p1n.value[1] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[1] === p1n.value[0] && p2c.value[2] === p1n.value[1] ||
-        p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[0] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[2] === p1n.value[0] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[1] === p1n.value[0] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[1] === p1n.value[0] && p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[1]) {
-            p2t.innerHTML += "3 cows" + "\n" + "\n";
-            p2t.scrollTop = p2t.scrollHeight;
-    } else if (    //2 cows with index 1 and 2 //
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[2] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[1] === p1n.value[0] && p2c.value[2] === p1n.value[1] ||
-        p2c.value[2] === p1n.value[1] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[1] === p1n.value[0] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[2] === p1n.value[0] && p2c.value[3] === p1n.value[1] ||
-            //2 cows with index 3 and 4 //
-        p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[1] === p1n.value[3] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[3] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[1] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[2] === p1n.value[3] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[1] === p1n.value[3] || 
-            //2 cows with index 2 and 3 //
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[2] === p1n.value[1] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[2] === p1n.value[1] ||
-        p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[1] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[1] === p1n.value[2] && p2c.value[3] === p1n.value[1] ||
-            //2 cows with index 1 and 3 //
-        p2c.value[0] === p1n.value[2] && p2c.value[1] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[2] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[2] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[1] === p1n.value[0] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[2] === p1n.value[0] && p2c.value[3] === p1n.value[2] ||
-        p2c.value[1] === p1n.value[2] && p2c.value[2] === p1n.value[0] ||
-        p2c.value[1] === p1n.value[2] && p2c.value[3] === p1n.value[0] ||
-            //2 cows with index 2 and 4 //
-        p2c.value[0] === p1n.value[1] && p2c.value[1] === p1n.value[3] ||
-        p2c.value[0] === p1n.value[1] && p2c.value[2] === p1n.value[3] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[2] === p1n.value[1] ||
-        p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[1] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[1] === p1n.value[3] && p2c.value[3] === p1n.value[1] ||
-        p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[1] ||
-            //2 cows with index 1 and 4 //
-        p2c.value[1] === p1n.value[0] && p2c.value[2] === p1n.value[3] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[1] === p1n.value[0] ||
-        p2c.value[1] === p1n.value[3] && p2c.value[2] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[2] === p1n.value[0] ||
-        p2c.value[2] === p1n.value[3] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[1] === p1n.value[3] && p2c.value[3] === p1n.value[0] ||
-        p2c.value[0] === p1n.value[3] && p2c.value[3] === p1n.value[0]) {
-            p2t.innerHTML += "2 cows" + "\n" + "\n";
-            p2t.scrollTop = p2t.scrollHeight;
-    } else if (p2c.value[0] === p1n.value[1] || p2c.value[0] === p1n.value[2] || p2c.value[0] === p1n.value[3] ||
-        p2c.value[1] === p1n.value[0] || p2c.value[1] === p1n.value[2] || p2c.value[1] === p1n.value[3] ||
-        p2c.value[2] === p1n.value[0] || p2c.value[2] === p1n.value[1] || p2c.value[2] === p1n.value[3] ||
-        p2c.value[3] === p1n.value[0] || p2c.value[3] === p1n.value[1] || p2c.value[3] === p1n.value[2]) {
-            p2t.innerHTML += "1 cow" + "\n" + "\n";
-            p2t.scrollTop = p2t.scrollHeight;
-    } else {
-        p2t.innerHTML += "0 cows" + "\n" + "\n";
-        p2t.scrollTop = p2t.scrollHeight; 
-    }
-}
-
-
 bt1.addEventListener('click', function() {
     msg.innerHTML = "Its Player 2 turn".fontsize(20);
-    checkBullP1();
-    checkCowP1();
+    checkBull(p1c.value, p2n.value,p1t,pl1);
+    // checkCowP1();
 }, false);
 
 bt2.addEventListener('click', function() {
     msg.innerHTML = "Its Player 1 turn".fontsize(20);
-    checkBullP2();
-    checkCowP2();
+    checkBull(p2c.value, p1n.value,p2t,pl2);
+    // checkCowP2();
 }, false);
 
 start.addEventListener('click', function() {
