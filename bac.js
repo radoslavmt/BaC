@@ -17,7 +17,7 @@ function checkALL(num){
         for (let j = 0; j < 4; j++){
             if(num.value[i] === num.value[j] && i !== j){
                 if(check > 0){
-                    msg.innerText="Please Kiss Me";
+                    msg.innerText="Please use different numbers";
                    return false;
                 }
                 check++;
